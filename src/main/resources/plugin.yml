@@ -1,0 +1,4 @@
+name: Xraydetector
+version: ${project.version}
+main: com.alttd.xraydetector.xraydetector.Main
+api-version: 1.13
