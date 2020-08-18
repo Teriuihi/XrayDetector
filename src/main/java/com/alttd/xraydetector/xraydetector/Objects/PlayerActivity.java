@@ -2,6 +2,8 @@ package com.alttd.xraydetector.xraydetector.Objects;
 
 import com.alttd.xraydetector.xraydetector.Main;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -92,7 +94,12 @@ public class PlayerActivity {
         final int minedBlockY = coords.getY() + 3;
         final int minedBlockZ = coords.getZ() + 4;
 
-        //TODO check if there is air above player head and if so ignore it
+        //TODO check if there is air above player head and if so ignore it this should work but it is untested
+        Location location = player.getLocation();
+        Block blockAt = player.getWorld().getBlockAt((int) Math.round(location.getX()), (int) Math.round(location.getY()) + 1, (int) Math.round(location.getZ()));
+        if (blockAt.getType().equals(Material.AIR) || blockAt.getType().equals(Material.CAVE_AIR)){
+            return false;
+        }
 
         main.getLogger().info(ChatColor.GOLD + "" + coords.toString());
 
